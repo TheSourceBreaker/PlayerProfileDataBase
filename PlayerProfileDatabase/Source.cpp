@@ -5,15 +5,30 @@ int main()
 {
 	score scr;
 
-	string * ptrplayerName = &scr.playerName; //Pointers for playerName and playerScore
-	int * ptrplayerscore = &scr.playerScore;
+	int boardSize = 6;
 
-	int highscore[] = { 800, 500, 450, 400, 350, 300, }; //Initiation of the scores and names on the ScoreBoard
-	string highnames[] = {"Bot1" ,"Bot2" ,"Bot3" ,"Bot4" ,"Bot5" ,"Bot6"};
+	int * playerscore = &scr.playerScore;//Pointers for playerName and playerScore
+	string * playerName = &scr.playerName;
 
 	string * answer = new string;
 	*answer = "";
-	
+
+	int* highscore = new int[boardSize]; //Initiation of the scores and names on the ScoreBoard
+	string* highnames = new string[boardSize];
+
+	highscore[0] = 900;
+	highscore[1] = 850;
+	highscore[2] = 750;
+	highscore[3] = 600;
+	highscore[4] = 450;
+	highscore[5] = 300;
+	highnames[0] = "Bot1";
+	highnames[1] = "Bot2";
+	highnames[2] = "Bot3";
+	highnames[3] = "Bot4";
+	highnames[4] = "Bot5";
+	highnames[5] = "Bot6";
+
 	while (true)
 	{
 		//----------------------------------------------------This Shows the ScoreBoard:
@@ -22,18 +37,20 @@ int main()
 
 		cout << "ScoreBoard:" << endl;
 
-		for (int p = 0; p < 6; p++)
+		for (int p = 0; p < boardSize; p++)//Originally displayed the board-----------------------------
+		{
 			cout << highnames[p] << " with " << highscore[p] << " points." << endl;
+		}
 		
 		//-----------------------------This part will ask for the player's Name and Score:
 		
 		cout << endl << "Type in your name for the ScoreBoard!" << endl;
 
-		cin >> *ptrplayerName;
+		cin >> *playerName;
 
-		cout << endl << "Ok! " << *ptrplayerName << ", Whats the Highest score you've gotten on ANY video-game EVER?" << endl;
+		cout << endl << "Ok! " << *playerName << ", Whats the Highest score you've gotten on ANY video-game EVER?" << endl;
 
-		cin >> *ptrplayerscore;
+		cin >> *playerscore;
 
 		cout << endl << "Alrighty now lets see if you made it unto the top 9..." << endl << endl;
 
@@ -41,7 +58,13 @@ int main()
 
 		//This part will determine if the player's score is worthy of being put on the board:
 
-		ChecknUpdate(ptrplayerscore, highscore, highnames, ptrplayerName,6);
+
+		//ChecknUpdate(playerscore, highscore, highnames, playerName, boardSize);
+
+		highnames = CopyMethodString(highnames, boardSize, playerName);
+		//highscore = CopyMethodInt(highscore, boardSize, playerscore);
+
+		boardSize++;
 
 		//-----------------------This part will ask the player if they want to leave or stay:
 
@@ -53,6 +76,7 @@ int main()
 		{
 			for (int o = 0; o < 18; o++)
 				cout << "|" << endl;
+
 			cout << endl << "Alrighty, ...Ahem!" << endl;
 		}
 
@@ -62,6 +86,8 @@ int main()
 
 	// clean-up
 	delete answer;
+	delete[] highnames;
+	delete[] highscore;
 
 	return 0;
 }
