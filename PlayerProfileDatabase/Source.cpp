@@ -13,43 +13,39 @@ int main()
 	string * answer = new string;
 	*answer = "";
 
-	int* highscore = new int[boardSize]; //Initiation of the scores and names on the ScoreBoard
-	string* highnames = new string[boardSize];
+	score* highscore = new score[boardSize];
 
-	highscore[0] = 900;
-	highscore[1] = 850;
-	highscore[2] = 750;
-	highscore[3] = 600;
-	highscore[4] = 450;
-	highscore[5] = 300;
-	highnames[0] = "Bot1";
-	highnames[1] = "Bot2";
-	highnames[2] = "Bot3";
-	highnames[3] = "Bot4";
-	highnames[4] = "Bot5";
-	highnames[5] = "Bot6";
+	highscore[0].playerScore = 900;
+	highscore[1].playerScore = 850;
+	highscore[2].playerScore = 750;
+	highscore[3].playerScore = 600;
+	highscore[4].playerScore = 450;
+	highscore[5].playerScore = 300;
+	highscore[0].playerName = "Bot1";
+	highscore[1].playerName = "Bot2";
+	highscore[2].playerName = "Bot3";
+	highscore[3].playerName = "Bot4";
+	highscore[4].playerName = "Bot5";
+	highscore[5].playerName = "Bot6";
 
 	while (true)
 	{
 		//----------------------------------------------------This Shows the ScoreBoard:
 
 		cout << "Welcome to Source's Reliable ScoreBoard! Here's how the Board looks now!" << endl << endl;
-
 		cout << "ScoreBoard:" << endl;
 
 		for (int p = 0; p < boardSize; p++)//Originally displayed the board-----------------------------
 		{
-			cout << highnames[p] << " with " << highscore[p] << " points." << endl;
+			cout << highscore[p].playerName << " with " << highscore[p].playerScore << " points." << endl;
 		}
 		
 		//-----------------------------This part will ask for the player's Name and Score:
 		
 		cout << endl << "Type in your name for the ScoreBoard!" << endl;
-
 		cin >> *playerName;
 
 		cout << endl << "Ok! " << *playerName << ", Whats the Highest score you've gotten on ANY video-game EVER?" << endl;
-
 		cin >> *playerscore;
 
 		cout << endl << "Alrighty now lets see if you made it unto the top 9..." << endl << endl;
@@ -61,8 +57,8 @@ int main()
 
 		//ChecknUpdate(playerscore, highscore, highnames, playerName, boardSize);
 
-		highnames = CopyMethodString(highnames, boardSize, playerName);
-		//highscore = CopyMethodInt(highscore, boardSize, playerscore);
+
+		highscore = CopyMethodInt(highscore, boardSize, playerscore);
 
 		boardSize++;
 
@@ -86,7 +82,6 @@ int main()
 
 	// clean-up
 	delete answer;
-	delete[] highnames;
 	delete[] highscore;
 
 	return 0;

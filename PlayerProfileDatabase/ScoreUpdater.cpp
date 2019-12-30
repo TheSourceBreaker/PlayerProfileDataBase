@@ -55,7 +55,7 @@ int* CopyMethodInt(int* currentHighScore, int Boardsize, int *playerScore)
 	}
 
 	newHighScore[Boardsize + 1] = *playerScore;
-	delete currentHighScore;
+	//delete currentHighScore;
 	return newHighScore;
 }
 
