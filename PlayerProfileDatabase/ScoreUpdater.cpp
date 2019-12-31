@@ -8,6 +8,7 @@ void ChecknUpdate(int * playerScore, int highScore[], string highScoreName[], st
 	int vessel = 0;
 	string nameVessel = "";
 	int NoGood = 0;
+
 	for (int i = 0; i < size; i++)
 	{
 		if (*playerScore > highScore[i]) //If this is true, it then Updates the highscore to the playerscore.
@@ -29,46 +30,19 @@ void ChecknUpdate(int * playerScore, int highScore[], string highScoreName[], st
 		cout << "Seems like your HighScore is lower than the top 6 to get put up!" << endl << endl;
 }
 
-void Capitalize(char playerName[], size_t size)
+score* CopyMethodInt(int* currentHighScore, int Boardsize, int *playerScore, string* currentHighNames, string* playerName)
 {
-	for (int i = 0; i < 20; i++)
-	{
-		if (playerName[i] >= 97)
-		{
-			if (playerName[i] <= 122)
-			{
-				playerName[i] -= 32;
-			}
-		}
-		if (playerName[i] == '\0')
-			break;
-	}
-}
-
-int* CopyMethodInt(int* currentHighScore, int Boardsize, int *playerScore)
-{
-	int* newHighScore = new int[Boardsize + 1];
+	score* newHighScore = new score[Boardsize + 1];
 
 	for (int i = 0; i < Boardsize; i++)
 	{
-		newHighScore[i] = currentHighScore[i];
+		newHighScore[i].playerName = currentHighNames[i];
+		newHighScore[i].playerScore = currentHighScore[i];
 	}
 
-	newHighScore[Boardsize + 1] = *playerScore;
-	//delete currentHighScore;
+	newHighScore[Boardsize + 1].playerScore = *playerScore;
+	newHighScore[Boardsize + 1].playerName = *playerName;
+
+	delete currentHighScore;
 	return newHighScore;
-}
-
-string* CopyMethodString(string* currentHighNames, int Boardsize, string* playerName)
-{
-	string* newHighNames = new string[Boardsize + 1];
-
-	for (int i = 0; i < Boardsize; i++)
-	{
-		newHighNames[i] = currentHighNames[i];
-	}
-
-	newHighNames[Boardsize + 1] = *playerName;
-	//delete currentHighNames;
-	return newHighNames;
 }

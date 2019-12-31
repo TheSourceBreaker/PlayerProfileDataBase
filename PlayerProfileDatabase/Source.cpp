@@ -55,12 +55,12 @@ int main()
 		//This part will determine if the player's score is worthy of being put on the board:
 
 
-		//ChecknUpdate(playerscore, highscore, highnames, playerName, boardSize);
 
-
-		highscore = CopyMethodInt(highscore, boardSize, playerscore);
-
+		highscore = CopyMethodInt(&highscore->playerScore, boardSize, playerscore, &highscore->playerName, playerName);
 		boardSize++;
+
+		ChecknUpdate(playerscore, &highscore[0].playerScore, &highscore[0].playerName, playerName, boardSize);
+
 
 		//-----------------------This part will ask the player if they want to leave or stay:
 
