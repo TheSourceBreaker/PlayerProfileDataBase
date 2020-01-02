@@ -3,46 +3,45 @@
 
 
 
-void ChecknUpdate(int * playerScore, int highScore[], string highScoreName[], string * playerName, size_t size)
+void ChecknUpdate(int * playerScore, score* highscore, string * playerName, int Boardsize)
 {
 	int vessel = 0;
 	string nameVessel = "";
-	int NoGood = 0;
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < Boardsize; i++)
 	{
-		if (*playerScore > highScore[i]) //If this is true, it then Updates the highscore to the playerscore.
+		for (int o = 0; o < Boardsize; o++)
 		{
-			vessel = highScore[i];
-			highScore[i] = *playerScore;
-			*playerScore = vessel;
+			if (highscore[i].playerScore > highscore[o].playerScore) //If this is true, it then Updates the highscore to the playerscore.
+			{
+				vessel = highscore[i].playerScore;
+				highscore[i].playerScore = highscore[o].playerScore;
+				highscore[o].playerScore = vessel;
 
-			nameVessel = highScoreName[i];
-			highScoreName[i] = *playerName;
-			*playerName = nameVessel;
+				nameVessel = highscore[i].playerName;
+				highscore[i].playerName = highscore[o].playerName;
+				highscore[o].playerName = nameVessel;
 
-			cout << " New HighScore saved!" << endl;
-			NoGood++;
-			break;
+			}
+
 		}
 	}
-	if(NoGood == 0)
-		cout << "Seems like your HighScore is lower than the top 6 to get put up!" << endl << endl;
+	cout << " New HighScore saved!" << endl;
 }
 
-score* CopyMethodInt(int* currentHighScore, int Boardsize, int *playerScore, string* currentHighNames, string* playerName)
+
+score* CopyMethod(score* highScore, int Boardsize, int *playerScore, string* playerName)
 {
 	score* newHighScore = new score[Boardsize + 1];
 
 	for (int i = 0; i < Boardsize; i++)
 	{
-		newHighScore[i].playerName = currentHighNames[i];
-		newHighScore[i].playerScore = currentHighScore[i];
+		newHighScore[i].playerName = highScore[i].playerName;
+		newHighScore[i].playerScore = highScore[i].playerScore;
 	}
 
-	newHighScore[Boardsize + 1].playerScore = *playerScore;
-	newHighScore[Boardsize + 1].playerName = *playerName;
+	newHighScore[Boardsize].playerScore = *playerScore;
+	newHighScore[Boardsize].playerName = *playerName;
 
-	delete currentHighScore;
 	return newHighScore;
 }
