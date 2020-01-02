@@ -56,7 +56,7 @@ int main()
 
 
 
-		highscore = CopyMethodInt(&highscore->playerScore, boardSize, playerscore, &highscore->playerName, playerName);
+		highscore = CopyMethodInt(&highscore->playerScore, boardSize, playerscore, &highscore->playerName, playerName);//-------------???
 		boardSize++;
 
 		ChecknUpdate(playerscore, &highscore[0].playerScore, &highscore[0].playerName, playerName, boardSize);
