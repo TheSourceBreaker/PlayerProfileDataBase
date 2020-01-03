@@ -5,7 +5,7 @@
 
 void ChecknUpdate(int * playerScore, score* highscore, string * playerName, int Boardsize)
 {
-	int vessel = 0;
+	int vessel = 0; //Used for switching around the scores
 	string nameVessel = "";
 
 	for (int i = 0; i < Boardsize; i++)
@@ -32,15 +32,15 @@ void ChecknUpdate(int * playerScore, score* highscore, string * playerName, int 
 
 score* CopyMethod(score* highScore, int Boardsize, int *playerScore, string* playerName)
 {
-	score* newHighScore = new score[Boardsize + 1];
+	score* newHighScore = new score[Boardsize + 1]; //Temporary Array
 
-	for (int i = 0; i < Boardsize; i++)
+	for (int i = 0; i < Boardsize; i++) //Array Copy Loop
 	{
 		newHighScore[i].playerName = highScore[i].playerName;
 		newHighScore[i].playerScore = highScore[i].playerScore;
 	}
 
-	newHighScore[Boardsize].playerScore = *playerScore;
+	newHighScore[Boardsize].playerScore = *playerScore; //Adding the player score and name into temporary array
 	newHighScore[Boardsize].playerName = *playerName;
 
 	return newHighScore;
